@@ -14,10 +14,12 @@ Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
-@app.route('/api/get_message')
+@app.route('/api/hotels/add-hotel', methods = ['GET'])
 def get_message():
     id = request.args.get('id')
     name = request.args.get('name')
+    query = session.query(Hotel).filter(Hotel.hNombre == name)
+    result = query.all()
     return jsonify({"messages from " + id: ["Hello there " + name]})
 
 
