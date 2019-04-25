@@ -1,10 +1,10 @@
 # Flask dependencies
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy import create_engine
+from database_setup import Base, Hotel
 from flask import Flask, request, jsonify
 app = Flask(__name__)
 
-from database_setup import Base, Hotel
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
 
 # Create session and connect to DB
 engine = create_engine('sqlite:///nebula.db')
@@ -12,7 +12,8 @@ Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
-@app.route('/api/hotels/get_hotel', methods = ['GET'])
+
+@app.route('/api/hotels/get_hotel', methods=['GET'])
 def get_hotel():
     if not 'id' in request.args:
         return jsonify({"error": "ID not specified"})
@@ -20,6 +21,22 @@ def get_hotel():
     query = session.query(Hotel).filter(Hotel.idHotel == id)
     result = query.one()
     return jsonify({"messages from " + id: ["Hello there " + result.hNombre]})
+
+
+@app.route('/api/hotels/add_hotel', methods=['POST'])
+def add_hotel():
+    if 'id' not in request.args:
+        return jsonify({"error": "id not specified"})
+    if 'name' not in request.args:
+        return jsonify({"error": "name not specified"})
+    if 'dir' not in request.args:
+        return jsonify({"error": "dir not specified"})
+    if 'country' not in request.args:
+        return jsonify({"error": "country not specified"})
+    if 'tel' not in request.args:
+        return jsonify({"error": "tel not specified"})
+    if 'mail' not in request.args:
+        return jsonify({"error": "mail not specified"})
 
 
 if __name__ == "__main__":

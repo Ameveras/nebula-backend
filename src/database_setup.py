@@ -13,9 +13,9 @@ class Hotel(Base):
     idHotel = Column(Integer, primary_key=True)
     hNombre = Column(String(250), nullable=False)
     direccion = Column(String(250), nullable=False)
-    pais = Column(String(250), nullable=False)
-    telefono = Column(String(25), nullable=False)
-    email = Column(String(250), nullable=False)
+    pais = Column(String(250), nullable=True)
+    telefono = Column(String(25), nullable=True)
+    email = Column(String(250), nullable=True)
 
 
 engine = create_engine('sqlite:///nebula.db')
