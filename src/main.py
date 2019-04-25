@@ -12,7 +12,7 @@ Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
-@app.route('/api/hotels/add_hotel', methods = ['GET'])
+@app.route('/api/hotels/get_hotel', methods = ['GET'])
 def get_hotel():
     if not 'id' in request.args:
         return jsonify({"error": "ID not specified"})
