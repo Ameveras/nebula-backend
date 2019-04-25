@@ -32,11 +32,11 @@ def add_hotel():
     if 'dir' not in request.args:
         return jsonify({"error": "dir not specified"})
     if 'country' not in request.args:
-        return jsonify({"error": "country not specified"})
+        country = ""
     if 'tel' not in request.args:
-        return jsonify({"error": "tel not specified"})
+        tel = ""
     if 'mail' not in request.args:
-        return jsonify({"error": "mail not specified"})
+        mail = ""
 
 
 if __name__ == "__main__":
