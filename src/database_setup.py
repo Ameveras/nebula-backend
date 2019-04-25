@@ -9,7 +9,7 @@ Base = declarative_base()
 
 
 class Hotel(Base):
-    __tablename__ = 'restaurant'
+    __tablename__ = 'Hotel'
     idHotel = Column(Integer, primary_key=True)
     hNombre = Column(String(250), nullable=False)
     direccion = Column(String(250), nullable=False)
