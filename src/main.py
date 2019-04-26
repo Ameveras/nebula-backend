@@ -19,7 +19,10 @@ def get_hotel():
         return jsonify({"error": "ID not specified"})
     id = request.args.get('id')
     query = session.query(Hotel).filter(Hotel.idHotel == id)
-    result = query.one()
+    try:
+        result = query.one()
+    except:
+        return jsonify({"error": "id not found"})
     return jsonify({"messages from " + id: ["Hello there " + result.hNombre]})
 
 
@@ -52,6 +55,7 @@ def add_hotel():
                      pais=country, telefono=tel, email=mail)
     session.add(newHotel)
     session.commit()
+    return jsonify({"OK": "200"})
 
 
 if __name__ == "__main__":
