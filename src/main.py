@@ -31,12 +31,27 @@ def add_hotel():
         return jsonify({"error": "name not specified"})
     if 'dir' not in request.args:
         return jsonify({"error": "dir not specified"})
+
     if 'country' not in request.args:
-        country = ""
+        country = None
+    else:
+        country = request.args.get("country")
     if 'tel' not in request.args:
-        tel = ""
+        tel = None
+    else:
+        tel = request.args.get("tel")
     if 'mail' not in request.args:
-        mail = ""
+        mail = None
+    else:
+        mail = request.args.get("mail")
+
+    idH = request.args.get("id")
+    name = request.args.get("name")
+    dirH = request.args.get("dir")
+    newHotel = Hotel(idHotel=idH, hNombre=name, direccion=dirH,
+                     pais=country, telefono=tel, email=mail)
+    session.add(newHotel)
+    session.commit()
 
 
 if __name__ == "__main__":
