@@ -66,5 +66,25 @@ def add_hotel():
      session.commit()
      return jsonify({"Mgs": "is Correct"})
 
+@app.route('/api/hotels/update_hotel/<id>', methods=['PUT'])
+def update_hotels(id):
+    query = session.query(Hotel).filter(Hotel.idHotel==id)
+     result = query.one()
+     request.get_json(force=True)
+     name = request.json['name']
+     dirH = request.json['Dirrecion']
+     pais = request.json['Pais']
+     tel = request.json['Telefono']
+     mail = request.json['Email']
+     result.hNombre = name
+     result.direccion = dirH
+     result.pais = pais
+     result.telefono = tel
+     result.email = mail
+     session.merge(result)
+     session.flush()
+     session.commit()
+     return jsonify({"OK": "200"})
+
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=True)
