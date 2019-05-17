@@ -60,40 +60,40 @@ def add_hotel():
 
 @app.route('/api/users/update_cliente/<id>', methods=['PUT'])
 def update_users(id):
- query = session.query(Usuario).filter(Usuario.IdCliente==id)
- result = query.one()
- request.get_json(force=True)
- IdCliente = request.json['Id_Cliente']
- TipoDoc= request.json['Tipo_Documento']
- Documento = request.json['Documento']
- CNombre = request.json['Nombre']
- CApellido = request.json['Apellido']
- Sexo = request.json['Sexo']
- Pais= request.json['Pais']
- FechaNacimiento = request.json['Dirrecion']
- Telefono = request.json['Pais']
- Email = request.json['Telefono']
- Foto = request.json['Foto']
- FechaRegistro = request.json['Fecha_Registro']
+     query = session.query(Usuario).filter(Usuario.IdCliente==id)
+     result = query.one()
+     request.get_json(force=True)
+     IdCliente = request.json['Id_Cliente']
+     TipoDoc= request.json['Tipo_Documento']
+     Documento = request.json['Documento']
+     CNombre = request.json['Nombre']
+     CApellido = request.json['Apellido']
+     Sexo = request.json['Sexo']
+     Pais= request.json['Pais']
+     FechaNacimiento = request.json['Dirrecion']
+     Telefono = request.json['Pais']
+     Email = request.json['Telefono']
+     Foto = request.json['Foto']
+     FechaRegistro = request.json['Fecha_Registro']
 
 
- result.IdCliente = IdCliente
- result.TipoDoc = TipoDoc
- result.Documento = Documento
- result.CNombre = CNombre
- result.CApellido = CApellido
- result.Sexo = Sexo
- result.direccion = direccion
- result.pais = pais
- result.FechaNacimiento = FechaNacimiento
- result.Telefono = Telefono
- result.Email = Email
- result.Foto = Foto
- result.FechaRegistro = FechaRegistro
- session.merge(result)
- session.flush()
- session.commit()
- return jsonify({"OK": "200"})
+     result.IdCliente = IdCliente
+     result.TipoDoc = TipoDoc
+     result.Documento = Documento
+     result.CNombre = CNombre
+     result.CApellido = CApellido
+     result.Sexo = Sexo
+     result.direccion = direccion
+     result.pais = pais
+     result.FechaNacimiento = FechaNacimiento
+     result.Telefono = Telefono
+     result.Email = Email
+     result.Foto = Foto
+     result.FechaRegistro = FechaRegistro
+     session.merge(result)
+     session.flush()
+     session.commit()
+     return jsonify({"OK": "200"})
 
     
  @app.route('/api/users/delete_user/<id>', methods=['DELETE'])
