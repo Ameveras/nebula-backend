@@ -135,5 +135,18 @@ def update_users(id):
      return jsonify({"Mgs": "is Correct"})
 
 
+@app.route('/api/users/get_user', methods=['GET'])
+def get_user():
+     if not 'id' in request.args:
+     return jsonify({"error": "ID not specified"})
+     id = request.args.get('id')
+     query = session.query(userl).filter(userl.iduserl == id)
+     try:
+     result = query.one()
+     except:
+     return jsonify({"error": "id not found"})
+     return jsonify({"messages from " + id: ["Hello there " + result.hNombre]})
+
+
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=True)
