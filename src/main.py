@@ -79,6 +79,15 @@ def add_hotel():
     return jsonify({"OK": "200"})
 
 
+@app.route('/api/hotels/delete_hotel/<id>', methods=['DELETE'])
+def delete_hotels(id):
+     query = session.query.get(id)
+     delete_hotels = query.filter_by(Hotel.idHotel==id).first()
+     session.delete(delete_hotels)
+     session.commit()
+     return jsonify({"Mgs": "is Correct"})
+
+
 @app.route('/api/users/update_cliente/<id>', methods=['PUT'])
 def update_users(id):
      query = session.query(Usuario).filter(Usuario.IdCliente==id)
