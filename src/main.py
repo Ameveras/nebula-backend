@@ -57,9 +57,6 @@ def add_hotel():
     session.commit()
     return jsonify({"OK": "200"})
 
-
-if __name__ == "__main__":
-    app.run(host='0.0.0.0', debug=True)
     
  @app.route('/api/users/delete_user/<id>', methods=['DELETE'])
  def delete_hotels(id):
