@@ -60,3 +60,14 @@ def add_hotel():
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=True)
+    
+ @app.route('/api/users/delete_user/<id>', methods=['DELETE'])
+ def delete_hotels(id):
+     query = session.query.get(id)
+     delete_users = query.filter_by(Usuario.IdCliente==id).first()
+     session.delete(delete_users)
+     session.commit()
+     return jsonify({"Mgs": "is Correct"})
+
+if __name__ == "__main__":
+    app.run(host='0.0.0.0', debug=True)
